@@ -1,0 +1,18 @@
+{
+  "name": "München Marathon 3:59",
+  "short_name": "Marathon 3:59",
+  "lang": "de",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fdfcfa",
+  "theme_color": "#fdfcfa",
+  "description": "Trainingsplan für den München Marathon am 11.10.2026, Zielzeit 3:59.",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

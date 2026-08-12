@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="de" data-th="sys" data-fs="2">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>München Marathon 3:59</title>
+<meta name="description" content="Trainingsplan München Marathon 11.10.2026, Zielzeit 3:59">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Marathon 3:59">
+<meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141513" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{
+  --bg:#fdfcfa; --bg2:#f3f0ea; --card:#ffffff; --fg:#191714; --fg2:#55504a;
+  --line:#dcd6cc; --acc:#1c5b47; --acc-fg:#ffffff; --accsoft:#e4efe9;
+  --ok:#1c6b45; --warn:#8a5300; --bad:#a11f1f;
+  --oksoft:#e2f0e8; --warnsoft:#f7ead3; --badsoft:#f7e2e0;
+  --shadow:0 1px 2px rgba(25,23,20,.06),0 2px 8px rgba(25,23,20,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root[data-th="sys"]{
+    --bg:#141513; --bg2:#1d1f1c; --card:#1d1f1c; --fg:#eeece7; --fg2:#a9a59d;
+    --line:#343730; --acc:#7fd0ae; --acc-fg:#0c1a14; --accsoft:#20302a;
+    --ok:#79cf9d; --warn:#e2b567; --bad:#f0908a;
+    --oksoft:#1c2c24; --warnsoft:#2e2717; --badsoft:#2f1e1d;
+    --shadow:none;
+  }
+}
+:root[data-th="dunkel"]{
+  --bg:#141513; --bg2:#1d1f1c; --card:#1d1f1c; --fg:#eeece7; --fg2:#a9a59d;
+  --line:#343730; --acc:#7fd0ae; --acc-fg:#0c1a14; --accsoft:#20302a;
+  --ok:#79cf9d; --warn:#e2b567; --bad:#f0908a;
+  --oksoft:#1c2c24; --warnsoft:#2e2717; --badsoft:#2f1e1d;
+  --shadow:none;
+}
+:root[data-fs="1"]{font-size:15px} :root[data-fs="2"]{font-size:16.5px}
+:root[data-fs="3"]{font-size:18.5px} :root[data-fs="4"]{font-size:21px}
+@media (prefers-contrast:more){ :root{--line:#8b857c; --fg2:#3a352f} }
+
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  line-height:1.5; font-size:1rem;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:44rem;margin:0 auto}
+h1,h2,h3{line-height:1.25;margin:0}
+p{margin:.5em 0}
+:focus-visible{outline:3px solid var(--acc); outline-offset:2px; border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* -------- Header -------- */
+header{
+  position:sticky;top:0;z-index:20;background:var(--bg);
+  border-bottom:1px solid var(--line);
+  padding:calc(env(safe-area-inset-top) + .5rem) 1rem .6rem;
+}
+.htop{display:flex;align-items:center;gap:.5rem;justify-content:space-between}
+.hname{font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--fg2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbtns{display:flex;gap:.35rem}
+.iconbtn{
+  min-width:46px;min-height:46px;border:1px solid var(--line);background:var(--card);
+  color:var(--fg);border-radius:12px;font-size:.85rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;padding:0 .55rem;
+}
+.iconbtn:active{background:var(--bg2)}
+.hcount{display:flex;align-items:baseline;gap:.5rem;margin-top:.3rem;flex-wrap:wrap}
+.hcount b{font-size:1.75rem;font-weight:700;letter-spacing:-.02em}
+.hcount span{font-size:.85rem;color:var(--fg2)}
+.bar{height:8px;background:var(--bg2);border-radius:99px;overflow:hidden;margin-top:.5rem;border:1px solid var(--line)}
+.bar>i{display:block;height:100%;background:var(--acc);border-radius:99px}
+.hsub{font-size:.78rem;color:var(--fg2);margin-top:.35rem}
+
+/* -------- Tabs -------- */
+nav[role=tablist]{
+  position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;
+  background:var(--bg);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+nav[role=tablist] button{
+  flex:1;min-height:56px;background:none;border:0;color:var(--fg2);
+  font-size:.78rem;font-weight:600;cursor:pointer;padding:.4rem .2rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  border-top:3px solid transparent;margin-top:-1px;
+}
+nav[role=tablist] button[aria-selected=true]{color:var(--acc);border-top-color:var(--acc)}
+nav[role=tablist] .ti{font-size:1.05rem;line-height:1}
+main{padding:0 1rem calc(96px + env(safe-area-inset-bottom))}
+[role=tabpanel][hidden]{display:none}
+
+/* -------- Karten -------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1rem;margin:.85rem 0;box-shadow:var(--shadow)}
+.meta{font-size:.78rem;color:var(--fg2);font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.card h2{font-size:1.28rem;margin:.3rem 0 .5rem;letter-spacing:-.01em}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.7rem}
+.chip{font-size:.8rem;font-weight:600;background:var(--bg2);border:1px solid var(--line);color:var(--fg2);padding:.25rem .55rem;border-radius:99px}
+.chip.acc{background:var(--accsoft);color:var(--acc);border-color:transparent}
+.chip.bad{background:var(--badsoft);color:var(--bad);border-color:transparent}
+ul.det{margin:.4rem 0 .8rem;padding-left:1.15rem}
+ul.det li{margin:.4rem 0}
+.why{background:var(--bg2);border-left:3px solid var(--acc);border-radius:0 10px 10px 0;padding:.6rem .8rem;font-size:.92rem;color:var(--fg2)}
+.why b{color:var(--fg);display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.2rem}
+
+/* -------- Log -------- */
+.log{margin-top:1rem;border-top:1px solid var(--line);padding-top:.9rem}
+.log h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--fg2);margin-bottom:.6rem}
+.done{display:flex;align-items:center;gap:.7rem;min-height:52px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:.5rem .8rem;cursor:pointer;font-weight:600;margin-bottom:.7rem}
+.done input{width:26px;height:26px;accent-color:var(--acc);flex:0 0 auto}
+.done.on{background:var(--oksoft);border-color:var(--ok);color:var(--ok)}
+.f{margin-bottom:.7rem}
+.f label{display:block;font-size:.82rem;color:var(--fg2);font-weight:600;margin-bottom:.25rem}
+.f input,.f select,.f textarea{
+  width:100%;min-height:46px;font:inherit;font-size:1rem;color:var(--fg);
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.5rem .65rem;
+}
+.f textarea{min-height:76px;resize:vertical}
+.f select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 49%,var(--fg2) 50%),linear-gradient(-45deg,transparent 49%,var(--fg2) 50%);background-position:calc(100% - 16px) 21px,calc(100% - 10px) 21px;background-size:6px 6px;background-repeat:no-repeat}
+.f select.a-ok{border-color:var(--ok);background-color:var(--oksoft)}
+.f select.a-warn{border-color:var(--warn);background-color:var(--warnsoft)}
+.f select.a-bad{border-color:var(--bad);background-color:var(--badsoft);font-weight:700}
+.ahint{font-size:.8rem;margin-top:.25rem;font-weight:600}
+.ahint.a-ok{color:var(--ok)} .ahint.a-warn{color:var(--warn)} .ahint.a-bad{color:var(--bad)}
+
+/* -------- Buttons -------- */
+.actions{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+.btn{min-height:52px;border-radius:12px;font:inherit;font-weight:700;font-size:.98rem;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:.6rem 1rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;text-decoration:none;line-height:1.3}
+.btn.p{background:var(--acc);color:var(--acc-fg);border-color:var(--acc)}
+.btn:active{opacity:.85}
+.btn small{display:block;font-weight:500;font-size:.78rem;opacity:.85}
+
+/* -------- Plan -------- */
+details.wk{border:1px solid var(--line);border-radius:14px;margin:.7rem 0;background:var(--card);overflow:hidden}
+details.wk>summary{list-style:none;cursor:pointer;padding:.85rem 1rem;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:.7rem;font-weight:700}
+details.wk>summary::-webkit-details-marker{display:none}
+details.wk[open]>summary{border-bottom:1px solid var(--line)}
+.wkm{font-size:.78rem;color:var(--fg2);font-weight:600;white-space:nowrap}
+.wkfok{padding:.6rem 1rem;font-size:.88rem;color:var(--fg2);background:var(--bg2)}
+.row{display:flex;width:100%;align-items:center;gap:.7rem;min-height:56px;padding:.55rem 1rem;background:none;border:0;border-top:1px solid var(--line);color:var(--fg);font:inherit;text-align:left;cursor:pointer}
+.row:first-of-type{border-top:0}
+.rd{flex:0 0 2.6rem;font-size:.78rem;font-weight:700;color:var(--fg2);line-height:1.2}
+.rt{flex:1;font-size:.95rem;font-weight:600}
+.rt em{display:block;font-style:normal;font-weight:500;font-size:.8rem;color:var(--fg2)}
+.rk{flex:0 0 auto;font-size:.8rem;color:var(--fg2);font-weight:600}
+.dot{flex:0 0 auto;width:11px;height:11px;border-radius:99px;border:2px solid var(--line)}
+.dot.on{background:var(--ok);border-color:var(--ok)}
+.row.today{background:var(--accsoft)}
+.row.today .rt{color:var(--acc)}
+
+/* -------- Referenz -------- */
+.tbl{width:100%;border-collapse:collapse;font-size:.9rem;margin:.6rem 0}
+.tbl th,.tbl td{text-align:left;padding:.5rem .4rem;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:.76rem;text-transform:uppercase;letter-spacing:.04em;color:var(--fg2)}
+.tbl td:first-child{font-weight:600}
+.amp{border-radius:12px;padding:.7rem .85rem;margin:.5rem 0;font-size:.92rem}
+.amp b{display:block;margin-bottom:.2rem;font-size:.85rem;letter-spacing:.03em}
+.amp.ok{background:var(--oksoft);color:var(--ok)} .amp.warn{background:var(--warnsoft);color:var(--warn)} .amp.bad{background:var(--badsoft);color:var(--bad)}
+
+/* -------- Fortschritt -------- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.7rem 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.75rem}
+.stat b{display:block;font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.stat span{font-size:.78rem;color:var(--fg2);font-weight:600}
+.wbar{display:flex;align-items:center;gap:.5rem;margin:.4rem 0;font-size:.82rem}
+.wbar .wl{flex:0 0 4.6rem;color:var(--fg2);font-weight:600}
+.wbar .wt{flex:1;height:20px;background:var(--bg2);border-radius:6px;position:relative;overflow:hidden;border:1px solid var(--line)}
+.wbar .wp{position:absolute;inset:0 auto 0 0;background:var(--line)}
+.wbar .wa{position:absolute;inset:0 auto 0 0;background:var(--acc)}
+.wbar .wv{flex:0 0 5.2rem;text-align:right;color:var(--fg2);font-variant-numeric:tabular-nums}
+.ftrend{display:flex;align-items:flex-end;justify-content:flex-start;gap:4px;height:60px;margin:.5rem 0}
+.ftrend i{flex:1 1 0;max-width:20px;border-radius:3px 3px 0 0;background:var(--ok);min-height:4px}
+.ftrend i.warn{background:var(--warn)} .ftrend i.bad{background:var(--bad)}
+.note{font-size:.85rem;color:var(--fg2);margin:.4rem 0}
+.banner{background:var(--accsoft);color:var(--acc);border-radius:12px;padding:.6rem .85rem;font-size:.88rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:.85rem}
+.banner button{background:none;border:1px solid currentColor;color:inherit;border-radius:8px;font:inherit;font-size:.82rem;font-weight:700;min-height:38px;padding:0 .7rem;cursor:pointer}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(78px + env(safe-area-inset-bottom));background:var(--fg);color:var(--bg);padding:.6rem 1rem;border-radius:99px;font-size:.88rem;font-weight:600;z-index:60;max-width:90vw;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="htop">
+      <div class="hname" id="hname">München Marathon</div>
+      <div class="hbtns">
+        <button class="iconbtn" id="btnFs" aria-label="Schriftgröße ändern">A<sup>+</sup></button>
+        <button class="iconbtn" id="btnTh" aria-label="Farbschema ändern">Auto</button>
+      </div>
+    </div>
+    <div class="hcount"><b id="cd">–</b><span id="cdsub"></span></div>
+    <div class="bar"><i id="pbar" style="width:0%"></i></div>
+    <div class="hsub" id="psub"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="p-heute" role="tabpanel" aria-labelledby="t-heute" tabindex="-1"></section>
+  <section id="p-plan" role="tabpanel" aria-labelledby="t-plan" tabindex="-1" hidden></section>
+  <section id="p-ref" role="tabpanel" aria-labelledby="t-ref" tabindex="-1" hidden></section>
+  <section id="p-fort" role="tabpanel" aria-labelledby="t-fort" tabindex="-1" hidden></section>
+</main>
+
+<nav role="tablist" aria-label="Bereiche">
+  <button role="tab" id="t-heute" aria-controls="p-heute" aria-selected="true" data-p="heute"><span class="ti" aria-hidden="true">●</span>Heute</button>
+  <button role="tab" id="t-plan" aria-controls="p-plan" aria-selected="false" data-p="plan"><span class="ti" aria-hidden="true">▤</span>Plan</button>
+  <button role="tab" id="t-ref" aria-controls="p-ref" aria-selected="false" data-p="ref"><span class="ti" aria-hidden="true">≡</span>Referenz</button>
+  <button role="tab" id="t-fort" aria-controls="p-fort" aria-selected="false" data-p="fort"><span class="ti" aria-hidden="true">▮</span>Fortschritt</button>
+</nav>
+
+<div id="live" class="sr" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+var DATA = {"goal":{"rennen":"München Marathon","iso":"2026-10-11","datumText":"Sonntag, 11. Oktober 2026","zielzeit":"3:59:00","zielpace":"5:40/km"},"start":"2026-08-12","promptProfil":"Kontext zu mir (bitte berücksichtigen, aber nicht wiederholen):\n- Ich heiße Laurids, 178 cm, 70 kg, laufe seit Jahren, aber dies ist mein ERSTER Marathon.\n- Ziel: München Marathon am 11.10.2026, Zielzeit 3:59:00, das sind 5:40/km.\n- Aktuelle 5-km-Bestzeit: 19:59 (VDOT ca. 50). Tempo ist reichlich vorhanden, Marathonpace liegt für mich im lockeren Dauerlaufbereich.\n- Mein Engpass ist NICHT Geschwindigkeit, sondern Haltbarkeit: Vor Planbeginn lag ich unter 30 km/Woche, längster Lauf unter 15 km.\n- Ich trainiere 4 x pro Woche (Di locker, Do Qualität, Sa locker kurz, So Longrun) plus Mo Mobility und Mi Kraft.\n- Der Plan läuft über 9 Wochen vom 12.08. bis 11.10.2026, Umfang von 26 auf 56 km/Woche, längster Lauf 30 km.\n- Gesundheit: Ich habe gerade eine lange, hartnäckige Erkältung überstanden und habe leichte, gelegentliche Schmerzen im rechten Fuß. Belastungssteigerung ist deshalb das Hauptrisiko.\n- Ich bin kein Entwickler und will konkrete, umsetzbare Antworten ohne Fachjargon-Nebel.","weeks":[{"nr":0,"titel":"Woche 0 - Wiedereinstieg","fokus":"Nach der Erkältung vorsichtig antesten. Nichts beweisen.","km":26,"ids":["2026-08-12","2026-08-13","2026-08-14","2026-08-15","2026-08-16"],"rennen":false,"von":"2026-08-12","bis":"2026-08-16"},{"nr":1,"titel":"Woche 1 - Basis legen","fokus":"Erste volle Woche. Rhythmus finden, 34 km.","km":34,"ids":["2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-22","2026-08-23"],"rennen":false,"von":"2026-08-17","bis":"2026-08-23"},{"nr":2,"titel":"Woche 2 - Renntempo kennenlernen","fokus":"Erstes Mal 5:40/km spüren. 41 km.","km":41,"ids":["2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-29","2026-08-30"],"rennen":false,"von":"2026-08-24","bis":"2026-08-30"},{"nr":3,"titel":"Woche 3 - Erste harte Woche","fokus":"47 km, Longrun 22 km. Ab hier wird es ernst.","km":47,"ids":["2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-05","2026-09-06"],"rennen":false,"von":"2026-08-31","bis":"2026-09-06"},{"nr":4,"titel":"Woche 4 - Entlastung","fokus":"Bewusst zurück auf 36 km. Der Körper verarbeitet, was du reingesteckt hast.","km":36,"ids":["2026-09-07","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-12","2026-09-13"],"rennen":false,"von":"2026-09-07","bis":"2026-09-13"},{"nr":5,"titel":"Woche 5 - Aufbau","fokus":"52 km, Longrun 26 km. Die zweitwichtigste Woche im Plan.","km":52,"ids":["2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-19","2026-09-20"],"rennen":false,"von":"2026-09-14","bis":"2026-09-20"},{"nr":6,"titel":"Woche 6 - Peak","fokus":"56 km, Longrun 30 km. Danach geht es nur noch bergab im Umfang.","km":56,"ids":["2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-26","2026-09-27"],"rennen":false,"von":"2026-09-21","bis":"2026-09-27"},{"nr":7,"titel":"Woche 7 - Taper beginnt","fokus":"Umfang runter auf 38 km, Intensität bleibt. Du wirst dich unruhig fühlen.","km":38,"ids":["2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-03","2026-10-04"],"rennen":false,"von":"2026-09-28","bis":"2026-10-04"},{"nr":8,"titel":"Woche 8 - Rennwoche","fokus":"18 km Training, dann 42,195 km Rennen. Frische schlagen Fitness.","km":18,"ids":["2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-10","2026-10-11"],"rennen":true,"von":"2026-10-05","bis":"2026-10-11"}],"entries":{"2026-08-12":{"id":"2026-08-12","iso":"2026-08-12","wtag":"Mi","wtagLang":"Mittwoch","datum":"12. August","datumKurz":"12.08.","wnr":0,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["HEUTE WICHTIG: Termin bei Sportarzt oder Physiotherapie für den rechten Fuß vereinbaren. Das ist die einzige Maßnahme im ganzen Plan mit echtem Hebel.","Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-13":{"id":"2026-08-13","iso":"2026-08-13","wtag":"Do","wtagLang":"Donnerstag","datum":"13. August","datumKurz":"13.08.","wnr":0,"typ":"lauf","titel":"Testlauf 6 km","km":6,"pace":"6:15-6:40/km","details":["6 km sehr locker. Wenn du zwischendurch reden könntest wie am Telefon, passt es.","Puls beobachten: Liegt er 10 Schläge über deinem Normalwert bei diesem Tempo, ist die Erkältung noch nicht durch. Dann abbrechen und morgen nochmal.","Kein Ehrgeiz. Das ist eine Messung, kein Training."],"warum":"Erster Belastungstest nach der Erkältung. Ein zu früher harter Reiz holt dir den Infekt zurück und kostet zwei Wochen, die du nicht hast.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-14":{"id":"2026-08-14","iso":"2026-08-14","wtag":"Fr","wtagLang":"Freitag","datum":"14. August","datumKurz":"14.08.","wnr":0,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-15":{"id":"2026-08-15","iso":"2026-08-15","wtag":"Sa","wtagLang":"Samstag","datum":"15. August","datumKurz":"15.08.","wnr":0,"typ":"lauf","titel":"Locker 8 km","km":8,"pace":"6:00-6:20/km","details":["8 km im Wohlfühltempo, möglichst weicher Untergrund.","Letzte 4 x 100 m leicht antraben (nicht sprinten), dazwischen locker weiterlaufen."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-16":{"id":"2026-08-16","iso":"2026-08-16","wtag":"So","wtagLang":"Sonntag","datum":"16. August","datumKurz":"16.08.","wnr":0,"typ":"lauf","titel":"Longrun 12 km","km":12,"pace":"6:10-6:30/km","details":["12 km durchgehend locker. Der Einstieg in die Longrun-Progression.","Nichts essen unterwegs nötig, aber Wasser mitnehmen wenn es warm ist.","Danach direkt Fuß checken und Wert eintragen."],"warum":"Der Longrun ist die einzige Einheit, die entscheidet, ob du bei km 32 laufen oder gehen wirst. Alles andere im Plan ist Beiwerk. Wenn du eine Einheit ausfallen lassen musst, dann nie diese.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-17":{"id":"2026-08-17","iso":"2026-08-17","wtag":"Mo","wtagLang":"Montag","datum":"17. August","datumKurz":"17.08.","wnr":1,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-18":{"id":"2026-08-18","iso":"2026-08-18","wtag":"Di","wtagLang":"Dienstag","datum":"18. August","datumKurz":"18.08.","wnr":1,"typ":"lauf","titel":"Locker 8 km","km":8,"pace":"5:50-6:20/km","details":["8 km locker. Beim Reden dürfen ganze Sätze rauskommen."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-19":{"id":"2026-08-19","iso":"2026-08-19","wtag":"Mi","wtagLang":"Mittwoch","datum":"19. August","datumKurz":"19.08.","wnr":1,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-20":{"id":"2026-08-20","iso":"2026-08-20","wtag":"Do","wtagLang":"Donnerstag","datum":"20. August","datumKurz":"20.08.","wnr":1,"typ":"lauf","titel":"Locker 7 km + Steigerungen","km":7,"pace":"5:50-6:20/km","details":["7 km locker.","Zum Schluss 5 x 100 m Steigerungsläufe: langsam anlaufen, auf ca. 4:00/km beschleunigen, wieder austrudeln. Dazwischen 100 m gehen.","Steigerungen halten die Beine spritzig, ohne dich zu ermüden."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-21":{"id":"2026-08-21","iso":"2026-08-21","wtag":"Fr","wtagLang":"Freitag","datum":"21. August","datumKurz":"21.08.","wnr":1,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-22":{"id":"2026-08-22","iso":"2026-08-22","wtag":"Sa","wtagLang":"Samstag","datum":"22. August","datumKurz":"22.08.","wnr":1,"typ":"lauf","titel":"Locker 5 km","km":5,"pace":"6:00-6:30/km","details":["Nur 5 km, ganz locker. Das ist die Vorbereitung für morgen, kein eigenständiges Training."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-23":{"id":"2026-08-23","iso":"2026-08-23","wtag":"So","wtagLang":"Sonntag","datum":"23. August","datumKurz":"23.08.","wnr":1,"typ":"lauf","titel":"Longrun 14 km","km":14,"pace":"6:10-6:30/km","details":["14 km durchgehend locker.","Ab jetzt: Trinkgürtel oder Weste mitnehmen und das Trinken im Laufen üben."],"warum":"Der Longrun ist die einzige Einheit, die entscheidet, ob du bei km 32 laufen oder gehen wirst. Alles andere im Plan ist Beiwerk. Wenn du eine Einheit ausfallen lassen musst, dann nie diese.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-24":{"id":"2026-08-24","iso":"2026-08-24","wtag":"Mo","wtagLang":"Montag","datum":"24. August","datumKurz":"24.08.","wnr":2,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-25":{"id":"2026-08-25","iso":"2026-08-25","wtag":"Di","wtagLang":"Dienstag","datum":"25. August","datumKurz":"25.08.","wnr":2,"typ":"lauf","titel":"Locker 9 km","km":9,"pace":"5:50-6:20/km","details":["9 km locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-26":{"id":"2026-08-26","iso":"2026-08-26","wtag":"Mi","wtagLang":"Mittwoch","datum":"26. August","datumKurz":"26.08.","wnr":2,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-27":{"id":"2026-08-27","iso":"2026-08-27","wtag":"Do","wtagLang":"Donnerstag","datum":"27. August","datumKurz":"27.08.","wnr":2,"typ":"lauf","titel":"8 km mit 3 km Renntempo","km":8,"pace":"MRT 5:35-5:45/km","details":["2,5 km locker einlaufen.","3 km im Marathon-Renntempo: 5:35 bis 5:45 pro Kilometer. Auf die Uhr schauen und das Tempo halten, auch wenn es sich langweilig anfühlt.","2,5 km locker auslaufen.","Wichtig: Wenn du am Ende außer Atem bist, warst du zu schnell."],"warum":"Marathon-Renntempo einlaufen: Dein Körper muss 5:40/km als Automatismus abspeichern, damit du am Renntag nicht aus Versehen zu schnell startest. Bei deiner Grundschnelligkeit fühlt sich dieses Tempo viel zu leicht an - genau das ist die Falle.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-28":{"id":"2026-08-28","iso":"2026-08-28","wtag":"Fr","wtagLang":"Freitag","datum":"28. August","datumKurz":"28.08.","wnr":2,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-29":{"id":"2026-08-29","iso":"2026-08-29","wtag":"Sa","wtagLang":"Samstag","datum":"29. August","datumKurz":"29.08.","wnr":2,"typ":"lauf","titel":"Locker 6 km","km":6,"pace":"6:00-6:30/km","details":["6 km ganz locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-30":{"id":"2026-08-30","iso":"2026-08-30","wtag":"So","wtagLang":"Sonntag","datum":"30. August","datumKurz":"30.08.","wnr":2,"typ":"lauf","titel":"Longrun 18 km","km":18,"pace":"6:10-6:30/km","details":["18 km durchgehend locker.","Ab hier Verpflegung üben: ein Gel oder 25 g Kohlenhydrate nach 45 und nach 80 Minuten.","Notiere im Log, wie der Magen reagiert hat. Am Renntag willst du keine Überraschung."],"warum":"Der Longrun ist die einzige Einheit, die entscheidet, ob du bei km 32 laufen oder gehen wirst. Alles andere im Plan ist Beiwerk. Wenn du eine Einheit ausfallen lassen musst, dann nie diese.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-08-31":{"id":"2026-08-31","iso":"2026-08-31","wtag":"Mo","wtagLang":"Montag","datum":"31. August","datumKurz":"31.08.","wnr":3,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-01":{"id":"2026-09-01","iso":"2026-09-01","wtag":"Di","wtagLang":"Dienstag","datum":"1. September","datumKurz":"01.09.","wnr":3,"typ":"lauf","titel":"Locker 9 km","km":9,"pace":"5:50-6:20/km","details":["9 km locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-02":{"id":"2026-09-02","iso":"2026-09-02","wtag":"Mi","wtagLang":"Mittwoch","datum":"2. September","datumKurz":"02.09.","wnr":3,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-03":{"id":"2026-09-03","iso":"2026-09-03","wtag":"Do","wtagLang":"Donnerstag","datum":"3. September","datumKurz":"03.09.","wnr":3,"typ":"lauf","titel":"10 km mit 5 km Renntempo","km":10,"pace":"MRT 5:35-5:45/km","details":["2,5 km locker einlaufen.","5 km im Marathon-Renntempo, ohne Unterbrechung.","2,5 km locker auslaufen."],"warum":"Marathon-Renntempo einlaufen: Dein Körper muss 5:40/km als Automatismus abspeichern, damit du am Renntag nicht aus Versehen zu schnell startest. Bei deiner Grundschnelligkeit fühlt sich dieses Tempo viel zu leicht an - genau das ist die Falle.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-04":{"id":"2026-09-04","iso":"2026-09-04","wtag":"Fr","wtagLang":"Freitag","datum":"4. September","datumKurz":"04.09.","wnr":3,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-05":{"id":"2026-09-05","iso":"2026-09-05","wtag":"Sa","wtagLang":"Samstag","datum":"5. September","datumKurz":"05.09.","wnr":3,"typ":"lauf","titel":"Locker 6 km","km":6,"pace":"6:00-6:30/km","details":["6 km ganz locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-06":{"id":"2026-09-06","iso":"2026-09-06","wtag":"So","wtagLang":"Sonntag","datum":"6. September","datumKurz":"06.09.","wnr":3,"typ":"lauf","titel":"Longrun 22 km","km":22,"pace":"6:10-6:30/km","details":["18 km locker, dann die letzten 4 km im Renntempo 5:40/km.","Verpflegung: alle 40 Minuten 25-30 g Kohlenhydrate. Nicht warten, bis du Hunger hast.","Das ist bisher dein längster Lauf. Realistisch etwa 2:15 Stunden auf den Beinen."],"warum":"Der Longrun ist die einzige Einheit, die entscheidet, ob du bei km 32 laufen oder gehen wirst. Alles andere im Plan ist Beiwerk. Wenn du eine Einheit ausfallen lassen musst, dann nie diese.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-07":{"id":"2026-09-07","iso":"2026-09-07","wtag":"Mo","wtagLang":"Montag","datum":"7. September","datumKurz":"07.09.","wnr":4,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-08":{"id":"2026-09-08","iso":"2026-09-08","wtag":"Di","wtagLang":"Dienstag","datum":"8. September","datumKurz":"08.09.","wnr":4,"typ":"lauf","titel":"Locker 8 km","km":8,"pace":"5:50-6:20/km","details":["8 km locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-09":{"id":"2026-09-09","iso":"2026-09-09","wtag":"Mi","wtagLang":"Mittwoch","datum":"9. September","datumKurz":"09.09.","wnr":4,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-10":{"id":"2026-09-10","iso":"2026-09-10","wtag":"Do","wtagLang":"Donnerstag","datum":"10. September","datumKurz":"10.09.","wnr":4,"typ":"lauf","titel":"Locker 7 km + Steigerungen","km":7,"pace":"5:50-6:20/km","details":["7 km locker plus 6 x 100 m Steigerungen zum Schluss.","Keine Tempoarbeit diese Woche. Das ist Absicht."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-11":{"id":"2026-09-11","iso":"2026-09-11","wtag":"Fr","wtagLang":"Freitag","datum":"11. September","datumKurz":"11.09.","wnr":4,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Halbzeit. Schau dir im Fortschritt-Tab an, wie die Fuß-Werte sich entwickelt haben.","Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-12":{"id":"2026-09-12","iso":"2026-09-12","wtag":"Sa","wtagLang":"Samstag","datum":"12. September","datumKurz":"12.09.","wnr":4,"typ":"lauf","titel":"Locker 5 km","km":5,"pace":"6:00-6:30/km","details":["5 km ganz locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-13":{"id":"2026-09-13","iso":"2026-09-13","wtag":"So","wtagLang":"Sonntag","datum":"13. September","datumKurz":"13.09.","wnr":4,"typ":"lauf","titel":"Longrun 16 km","km":16,"pace":"6:10-6:30/km","details":["Nur 16 km, bewusst kurz. Nicht mehr machen, auch wenn es sich gut anfühlt.","Diese Woche ist die Versicherung für die beiden harten Wochen, die jetzt kommen."],"warum":"Entlastungswochen sind da, wo die Anpassung tatsächlich stattfindet. Wer sie überspringt, sammelt Ermüdung statt Form - und bei dir mit dem Fuß auch Risiko.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-14":{"id":"2026-09-14","iso":"2026-09-14","wtag":"Mo","wtagLang":"Montag","datum":"14. September","datumKurz":"14.09.","wnr":5,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-15":{"id":"2026-09-15","iso":"2026-09-15","wtag":"Di","wtagLang":"Dienstag","datum":"15. September","datumKurz":"15.09.","wnr":5,"typ":"lauf","titel":"Locker 9 km","km":9,"pace":"5:50-6:20/km","details":["9 km locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-16":{"id":"2026-09-16","iso":"2026-09-16","wtag":"Mi","wtagLang":"Mittwoch","datum":"16. September","datumKurz":"16.09.","wnr":5,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-17":{"id":"2026-09-17","iso":"2026-09-17","wtag":"Do","wtagLang":"Donnerstag","datum":"17. September","datumKurz":"17.09.","wnr":5,"typ":"lauf","titel":"11 km mit 7 km Renntempo","km":11,"pace":"MRT 5:35-5:45/km","details":["2 km locker einlaufen.","7 km am Stück im Renntempo 5:40/km.","2 km locker auslaufen.","Diese Einheit ist die Generalprobe fürs Tempogefühl."],"warum":"Marathon-Renntempo einlaufen: Dein Körper muss 5:40/km als Automatismus abspeichern, damit du am Renntag nicht aus Versehen zu schnell startest. Bei deiner Grundschnelligkeit fühlt sich dieses Tempo viel zu leicht an - genau das ist die Falle.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-18":{"id":"2026-09-18","iso":"2026-09-18","wtag":"Fr","wtagLang":"Freitag","datum":"18. September","datumKurz":"18.09.","wnr":5,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-19":{"id":"2026-09-19","iso":"2026-09-19","wtag":"Sa","wtagLang":"Samstag","datum":"19. September","datumKurz":"19.09.","wnr":5,"typ":"lauf","titel":"Locker 6 km","km":6,"pace":"6:00-6:30/km","details":["6 km ganz locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-20":{"id":"2026-09-20","iso":"2026-09-20","wtag":"So","wtagLang":"Sonntag","datum":"20. September","datumKurz":"20.09.","wnr":5,"typ":"lauf","titel":"Longrun 26 km","km":26,"pace":"6:10-6:30/km","details":["21 km locker, letzte 5 km im Renntempo 5:40/km.","Verpflegung wie im Rennen: alle 35-40 Minuten 30 g Kohlenhydrate, insgesamt mindestens 90 g.","Trage die Schuhe und die Kleidung, die du am Renntag anziehen willst. Auch die Socken.","Etwa 2:40 Stunden unterwegs. Plan den Tag drumherum."],"warum":"Der Longrun ist die einzige Einheit, die entscheidet, ob du bei km 32 laufen oder gehen wirst. Alles andere im Plan ist Beiwerk. Wenn du eine Einheit ausfallen lassen musst, dann nie diese.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-21":{"id":"2026-09-21","iso":"2026-09-21","wtag":"Mo","wtagLang":"Montag","datum":"21. September","datumKurz":"21.09.","wnr":6,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-22":{"id":"2026-09-22","iso":"2026-09-22","wtag":"Di","wtagLang":"Dienstag","datum":"22. September","datumKurz":"22.09.","wnr":6,"typ":"lauf","titel":"Locker 9 km","km":9,"pace":"5:50-6:20/km","details":["9 km locker. Nicht mehr, egal wie gut es läuft."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-23":{"id":"2026-09-23","iso":"2026-09-23","wtag":"Mi","wtagLang":"Mittwoch","datum":"23. September","datumKurz":"23.09.","wnr":6,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-24":{"id":"2026-09-24","iso":"2026-09-24","wtag":"Do","wtagLang":"Donnerstag","datum":"24. September","datumKurz":"24.09.","wnr":6,"typ":"lauf","titel":"11 km mit 8 km Renntempo","km":11,"pace":"MRT 5:35-5:45/km","details":["1,5 km locker einlaufen.","8 km am Stück im Renntempo 5:40/km.","1,5 km locker auslaufen."],"warum":"Marathon-Renntempo einlaufen: Dein Körper muss 5:40/km als Automatismus abspeichern, damit du am Renntag nicht aus Versehen zu schnell startest. Bei deiner Grundschnelligkeit fühlt sich dieses Tempo viel zu leicht an - genau das ist die Falle.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-25":{"id":"2026-09-25","iso":"2026-09-25","wtag":"Fr","wtagLang":"Freitag","datum":"25. September","datumKurz":"25.09.","wnr":6,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Morgen und übermorgen ist die wichtigste Einheit des Plans. Heute wirklich nichts tun.","Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-26":{"id":"2026-09-26","iso":"2026-09-26","wtag":"Sa","wtagLang":"Samstag","datum":"26. September","datumKurz":"26.09.","wnr":6,"typ":"lauf","titel":"Locker 6 km","km":6,"pace":"6:00-6:30/km","details":["6 km ganz locker. Beine lockern, nicht müde machen."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-27":{"id":"2026-09-27","iso":"2026-09-27","wtag":"So","wtagLang":"Sonntag","datum":"27. September","datumKurz":"27.09.","wnr":6,"typ":"lauf","titel":"SCHLÜSSELLAUF: Longrun 30 km","km":30,"pace":"6:10-6:30/km","details":["22 km locker, dann 8 km im Renntempo 5:40/km. Der wichtigste Lauf des ganzen Plans.","Vollständige Renntag-Simulation: gleiches Frühstück, gleiche Startzeit, gleiche Ausrüstung, gleiche Verpflegung. Alles, was hier schiefgeht, geht am 11.10. auch schief.","Verpflegung: alle 35 Minuten 30 g Kohlenhydrate, insgesamt mindestens 120 g.","Etwa 3 Stunden unterwegs. Danach zwei Tage sehr ruhig.","Wenn du diese Einheit sauber durchbekommst, ist 3:59 realistisch. Wenn nicht, sprich mit Claude über eine Zielanpassung - dafür ist der Knopf unten da."],"warum":"Der Longrun ist die einzige Einheit, die entscheidet, ob du bei km 32 laufen oder gehen wirst. Alles andere im Plan ist Beiwerk. Wenn du eine Einheit ausfallen lassen musst, dann nie diese.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-28":{"id":"2026-09-28","iso":"2026-09-28","wtag":"Mo","wtagLang":"Montag","datum":"28. September","datumKurz":"28.09.","wnr":7,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-29":{"id":"2026-09-29","iso":"2026-09-29","wtag":"Di","wtagLang":"Dienstag","datum":"29. September","datumKurz":"29.09.","wnr":7,"typ":"lauf","titel":"Locker 8 km","km":8,"pace":"5:50-6:20/km","details":["8 km locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-09-30":{"id":"2026-09-30","iso":"2026-09-30","wtag":"Mi","wtagLang":"Mittwoch","datum":"30. September","datumKurz":"30.09.","wnr":7,"typ":"mobi","titel":"Kraft & Stabilität","km":0,"pace":"20 Minuten","details":["Ab jetzt Kraft reduzieren: nur noch 2 Sätze statt 3, kein Muskelkater erzeugen.","Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."],"warum":"Exzentrisches Wadenheben ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang. 20 Minuten, die dein Rennen retten können.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-01":{"id":"2026-10-01","iso":"2026-10-01","wtag":"Do","wtagLang":"Donnerstag","datum":"1. Oktober","datumKurz":"01.10.","wnr":7,"typ":"lauf","titel":"9 km mit 5 km Renntempo","km":9,"pace":"MRT 5:35-5:45/km","details":["2 km locker einlaufen, 5 km im Renntempo, 2 km auslaufen.","Das Tempo soll sich jetzt selbstverständlich anfühlen."],"warum":"Marathon-Renntempo einlaufen: Dein Körper muss 5:40/km als Automatismus abspeichern, damit du am Renntag nicht aus Versehen zu schnell startest. Bei deiner Grundschnelligkeit fühlt sich dieses Tempo viel zu leicht an - genau das ist die Falle.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-02":{"id":"2026-10-02","iso":"2026-10-02","wtag":"Fr","wtagLang":"Freitag","datum":"2. Oktober","datumKurz":"02.10.","wnr":7,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-03":{"id":"2026-10-03","iso":"2026-10-03","wtag":"Sa","wtagLang":"Samstag","datum":"3. Oktober","datumKurz":"03.10.","wnr":7,"typ":"lauf","titel":"Locker 5 km","km":5,"pace":"6:00-6:30/km","details":["5 km ganz locker."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-04":{"id":"2026-10-04","iso":"2026-10-04","wtag":"So","wtagLang":"Sonntag","datum":"4. Oktober","datumKurz":"04.10.","wnr":7,"typ":"lauf","titel":"Longrun 16 km","km":16,"pace":"6:00-6:20/km","details":["12 km locker, letzte 4 km im Renntempo.","Deutlich kürzer als die letzten Wochen. Das ist richtig so. Widerstehe dem Drang, mehr zu machen."],"warum":"Der Taper ist der Teil, an dem die meisten Erstläufer ihr Rennen verlieren - nicht durch zu wenig, sondern durch zu viel. Deine Form ist gebaut, jetzt musst du sie nur noch ausruhen.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"kh","l":"Kohlenhydrate während des Laufs (Gramm)","t":"num","step":"5"},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-05":{"id":"2026-10-05","iso":"2026-10-05","wtag":"Mo","wtagLang":"Montag","datum":"5. Oktober","datumKurz":"05.10.","wnr":8,"typ":"mobi","titel":"Mobility & Regeneration","km":0,"pace":"10 Minuten","details":["Nur Mobility, keine Kraft mehr diese Woche.","Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."],"warum":"Zehn Minuten, die deinen rechten Fuß durch die nächsten Wochen bringen. Bei steigendem Umfang ist Gewebepflege keine Kür.","log":[{"k":"status","l":"Status","t":"sel","o":["","Gemacht","Verkürzt","Ausgelassen"]},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-06":{"id":"2026-10-06","iso":"2026-10-06","wtag":"Di","wtagLang":"Dienstag","datum":"6. Oktober","datumKurz":"06.10.","wnr":8,"typ":"lauf","titel":"Locker 8 km","km":8,"pace":"5:50-6:20/km","details":["8 km locker. Letzter etwas längerer Lauf."],"warum":"Lockere Läufe bauen genau das auf, was dir fehlt: Kapillaren, Sehnen, Knochendichte, Fettstoffwechsel. Sie fühlen sich zu langsam an. Das ist der Punkt. Wenn du hier schneller läufst, klaust du dir die Energie für den Longrun.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-07":{"id":"2026-10-07","iso":"2026-10-07","wtag":"Mi","wtagLang":"Mittwoch","datum":"7. Oktober","datumKurz":"07.10.","wnr":8,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Ab heute: Startunterlagen, Anreise und Kleidung final klären.","Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-08":{"id":"2026-10-08","iso":"2026-10-08","wtag":"Do","wtagLang":"Donnerstag","datum":"8. Oktober","datumKurz":"08.10.","wnr":8,"typ":"lauf","titel":"6 km mit 3 x 1 km Renntempo","km":6,"pace":"MRT 5:35-5:45/km","details":["1,5 km einlaufen, dann 3 x 1 km im Renntempo mit je 400 m lockerem Trab dazwischen, 1,5 km auslaufen.","Letzte Tempoberührung. Kurz, leicht, zum Wachhalten."],"warum":"Marathon-Renntempo einlaufen: Dein Körper muss 5:40/km als Automatismus abspeichern, damit du am Renntag nicht aus Versehen zu schnell startest. Bei deiner Grundschnelligkeit fühlt sich dieses Tempo viel zu leicht an - genau das ist die Falle.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-09":{"id":"2026-10-09","iso":"2026-10-09","wtag":"Fr","wtagLang":"Freitag","datum":"9. Oktober","datumKurz":"09.10.","wnr":8,"typ":"ruhe","titel":"Ruhetag","km":0,"pace":"-","details":["Ab heute Kohlenhydrate hochfahren: siehe Referenz-Tab, Abschnitt Renntag.","Kein Laufen. Kein Ersatztraining, das die Beine belastet.","Erlaubt: Spaziergang, Radfahren ganz locker, Schwimmen.","Fuß kurz checken und im Log eintragen - der Trend ist wichtiger als der Einzelwert."],"warum":"Anpassung passiert in der Pause, nicht im Lauf. Bei deinem Volumensprung ist der Ruhetag eine Trainingseinheit, keine Lücke.","log":[{"k":"status","l":"Status","t":"sel","o":["","Eingehalten","Trotzdem gelaufen"]},{"k":"fussv","l":"Fuß heute (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-10":{"id":"2026-10-10","iso":"2026-10-10","wtag":"Sa","wtagLang":"Samstag","datum":"10. Oktober","datumKurz":"10.10.","wnr":8,"typ":"lauf","titel":"Ausschütteln 4 km","km":4,"pace":"6:00-6:30/km","details":["4 km ganz locker, dazu 3 x 100 m Steigerungen.","Nur, damit die Beine wissen, dass es morgen losgeht.","Startnummer abholen, Ausrüstung bereitlegen, früh ins Bett."],"warum":"Ein kurzer Lauf am Vortag beugt dem steifen Gefühl am Start vor. Mehr als 4 km bringt nichts.","log":[{"k":"status","l":"Status","t":"sel","o":["","Wie geplant","Angepasst","Ausgelassen","Verschoben"]},{"k":"km","l":"Distanz (km)","t":"num","step":"0.1"},{"k":"min","l":"Dauer (Minuten)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1 = sehr leicht, 10 = maximal)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussv","l":"Fuß VOR dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"fussn","l":"Fuß NACH dem Lauf (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"schlaf","l":"Schlaf letzte Nacht","t":"sel","o":["","Sehr gut","Gut","Mittel","Schlecht"]},{"k":"notiz","l":"Notiz","t":"text"}]},"2026-10-11":{"id":"2026-10-11","iso":"2026-10-11","wtag":"So","wtagLang":"Sonntag","datum":"11. Oktober","datumKurz":"11.10.","wnr":8,"typ":"rennen","titel":"MUENCHEN MARATHON","km":42.195,"pace":"Ziel 5:40/km = 3:59:00","details":["Die ersten 5 km bewusst bei 5:50/km. Langsamer als Zielpace. Das ist kein Fehler.","Km 6 bis 32: 5:38/km, gleichmäßig. Nicht auf andere Läufer reagieren.","Ab km 32: Wenn du dich gut fühlst, Tempo halten oder minimal steigern. Wenn nicht, halte 5:50 und bring es nach Hause.","Verpflegung: alle 35 Minuten 30 g Kohlenhydrate ab km 8. Nicht später anfangen.","Die vollständige Zwischenzeiten-Tabelle steht im Referenz-Tab."],"warum":"Heute zahlt sich aus, was du in 60 Tagen eingezahlt hast. Dein größtes Risiko ist ein zu schneller Start - dein 5-km-Tempo liegt 1:40 pro Kilometer über dem Renntempo, es wird sich unglaublich leicht anfühlen. Lass dich nicht verführen.","log":[{"k":"status","l":"Status","t":"sel","o":["","Finish","Aufgegeben"]},{"k":"min","l":"Endzeit in Minuten (z.B. 239 = 3:59)","t":"num","step":"1"},{"k":"rpe","l":"Anstrengung (1-10)","t":"sel","o":["","1","2","3","4","5","6","7","8","9","10"]},{"k":"fussn","l":"Fuß nach dem Rennen (0-10)","t":"sel","o":["","0","1","2","3","4","5","6","7","8","9","10"],"ampel":true},{"k":"notiz","l":"Wie war es?","t":"text"}]}},"order":["2026-08-12","2026-08-13","2026-08-14","2026-08-15","2026-08-16","2026-08-17","2026-08-18","2026-08-19","2026-08-20","2026-08-21","2026-08-22","2026-08-23","2026-08-24","2026-08-25","2026-08-26","2026-08-27","2026-08-28","2026-08-29","2026-08-30","2026-08-31","2026-09-01","2026-09-02","2026-09-03","2026-09-04","2026-09-05","2026-09-06","2026-09-07","2026-09-08","2026-09-09","2026-09-10","2026-09-11","2026-09-12","2026-09-13","2026-09-14","2026-09-15","2026-09-16","2026-09-17","2026-09-18","2026-09-19","2026-09-20","2026-09-21","2026-09-22","2026-09-23","2026-09-24","2026-09-25","2026-09-26","2026-09-27","2026-09-28","2026-09-29","2026-09-30","2026-10-01","2026-10-02","2026-10-03","2026-10-04","2026-10-05","2026-10-06","2026-10-07","2026-10-08","2026-10-09","2026-10-10","2026-10-11"],"ref":[{"id":"tempo","titel":"Deine Trainingstempos","intro":"Abgeleitet aus deiner 5-km-Zeit von 19:59 (VDOT 50), angepasst an deinen aktuellen Umfang.","tabelle":{"kopf":["Bereich","Tempo","So fühlt es sich an"],"zeilen":[["Locker (Di, Sa)","5:50-6:20/km","Unterhaltung in ganzen Sätzen möglich"],["Longrun Grundtempo","6:10-6:30/km","Bewusst langsam, fast unangenehm gemütlich"],["Marathon-Renntempo","5:35-5:45/km","Kontrolliert, deutlich zu leicht"],["Steigerungen 100 m","ca. 4:00/km","Zügig und locker, kein Sprint"],["Dein 5-km-Tempo","4:00/km","Kommt in diesem Plan nicht vor"]]},"text":["Der wichtigste Satz auf dieser Seite: Dein Marathon-Renntempo von 5:40/km liegt LANGSAMER als dein normales lockeres Dauerlauftempo wäre. Aerob ist 3:59 für dich kein Problem. Das Problem ist, 42 km lang durchzuhalten.","Deshalb steht in diesem Plan kein einziges Intervalltraining. Du hast Tempo im Überfluss. Jede harte Einheit wäre reines Verletzungsrisiko ohne Gegenwert."]},{"id":"renntag","titel":"Renntag-Pacing für 3:59:00","intro":"Zielpace 5:40/km. Die Tabelle zeigt die Uhrzeit auf deiner Uhr an jedem Punkt.","tabelle":{"kopf":["Punkt","Zwischenzeit","Empfohlen"],"zeilen":[["5 km","0:28:20","0:29:10 (bewusst langsamer)"],["10 km","0:56:40","0:57:00"],["15 km","1:25:00","1:25:00"],["20 km","1:53:20","1:53:10"],["Halbmarathon","1:59:30","1:59:20"],["25 km","2:21:40","2:21:20"],["30 km","2:50:00","2:49:30"],["35 km","3:18:20","3:18:00"],["40 km","3:46:40","3:46:30"],["Ziel 42,195 km","3:59:00","3:59:00"]]},"text":["Strategie: Die ersten 5 km bei 5:50/km. Du wirst Leute vorbeiziehen sehen und denken, du verlierst dein Rennen. Du gewinnst es gerade. Danach von km 6 bis 32 gleichmäßig 5:38/km.","Entscheidungspunkt km 30: Wenn Atmung und Beine ruhig sind, Tempo halten. Wenn die Beine anfangen zu sprechen, sofort auf 5:50/km gehen und den Rest kontrolliert nach Hause bringen. 4:05 mit aufrechtem Kopf ist ein besseres Ergebnis als 4:30 mit Gehpausen.","Verpflegung: ab km 8 alle 35 Minuten 30 g Kohlenhydrate. Das sind über das Rennen etwa 5 bis 6 Gels. Genau so, wie du es im Longrun geübt hast - am Renntag nichts Neues.","Carb-Loading: Die letzten 2 bis 3 Tage vor dem Rennen etwa 8 g Kohlenhydrate pro kg Körpergewicht pro Tag, bei dir rund 560 g. Nicht mehr essen, sondern anders essen: Reis, Nudeln, Weißbrot, Bananen, Saft. Fett und Ballaststoffe runterfahren.","Frühstück am Renntag: 3 Stunden vorher, 100 bis 150 g Kohlenhydrate, nichts Fettiges, nichts Neues. Genau das, was du vor dem 30-km-Lauf am 27.09. gegessen hast."]},{"id":"fuss","titel":"Der rechte Fuß: Ampel-Regeln","intro":"Verbindlich. Bei steigendem Umfang ist das die Regel, die dein Rennen rettet oder beendet.","ampel":[{"farbe":"ok","kopf":"GRUEN - Schmerz 0 bis 2","text":"Diffus, verschwindet nach dem Einlaufen, am nächsten Morgen weg. Training läuft normal weiter. Mobility nicht ausfallen lassen."},{"farbe":"warn","kopf":"GELB - Schmerz 3 bis 4","text":"Während des Laufs spürbar, klingt danach ab, morgens leichte Steifigkeit. Umfang der Einheit halbieren, kein Renntempo, keine Steigerung. Zwei gelbe Tage hintereinander: Longrun streichen und Arzttermin machen."},{"farbe":"bad","kopf":"ROT - sofort aufhören","text":"Schmerz ab 5, ODER punktueller Druckschmerz auf einem Knochen, ODER Schmerz beim normalen Gehen, ODER Schmerz nachts, ODER sichtbare Schwellung. Laufpause und ärztliche Abklärung, nicht diskutieren."}],"text":["Warnzeichen für einen Ermüdungsbruch im Mittelfuß - wenn eines davon zutrifft, gehoert das abgeklärt, unabhängig vom Trainingsplan:","- Der Schmerz lässt sich mit einer Fingerspitze auf einen Punkt am Knochen zeigen.","- Er nimmt während der Belastung zu, statt nachzulassen.","- Einbeiniges Hüpfen auf dem Fuß tut weh.","- Schmerz in Ruhe oder nachts.","- Lokale Schwellung oder Überwärmung am Fußrücken.","Warum das hier so prominent steht: Du steigerst deinen Wochenumfang in sechs Wochen von unter 30 auf 56 km. Das ist genau das Belastungsmuster, aus dem Ermüdungsbrüche entstehen - und du startest bereits mit Beschwerden. Ein Ermüdungsbruch bedeutet 6 bis 8 Wochen Laufpause und damit garantiert keinen Marathon am 11.10.","Zwei praktische Maßnahmen: einen zweiten Laufschuh im Wechsel tragen (unterschiedliche Belastung des Fußes), und das exzentrische Wadenheben am Mittwoch nie ausfallen lassen.","Ich bin kein Arzt und diese App ersetzt keine Untersuchung. Die Regeln oben sind bewusst konservativ ausgelegt."]},{"id":"routinen","titel":"Mobility- und Kraftroutinen","intro":"Montag Mobility (10 Minuten), Mittwoch Kraft (20 Minuten). Beides ohne Geräte.","liste":[{"kopf":"Montag: Mobility & Regeneration","punkte":["Faszienrolle oder Ball unter der rechten Fußsohle: 90 Sekunden je Fuß, langsam rollen.","Wadendehnung an der Wand: 2 x 45 Sekunden je Bein, einmal mit gestrecktem, einmal mit gebeugtem Knie.","Hüfte öffnen (Ausfallschritt mit Oberkörper aufrecht): 2 x 45 Sekunden je Seite.","Beinrückseite im Sitzen dehnen: 2 x 45 Sekunden je Seite, Rücken lang lassen.","Zehen spreizen und einzeln heben: 1 Minute je Fuß, im Sitzen."]},{"kopf":"Mittwoch: Kraft & Stabilität","punkte":["Wadenheben einbeinig, langsam ablassen (3 Sekunden runter): 3 x 12 je Bein. Wichtigste Übung für den Fuß.","Zehenstand halten auf einem Bein: 3 x 30 Sekunden je Seite.","Einbeiniges Beckenheben (Brücke): 3 x 10 je Seite.","Ausfallschritte rückwärts: 3 x 10 je Seite, ohne Gewicht.","Seitstütz: 3 x 30 Sekunden je Seite.","Unterarmstütz mit Beinheben: 3 x 30 Sekunden."]}],"text":["Das exzentrische Wadenheben (langsames Ablassen über 3 Sekunden) ist die einzige Übung, die du auf keinen Fall streichen solltest. Sie ist die am besten belegte Einzelmaßnahme gegen Achilles- und Fußbeschwerden bei steigendem Laufumfang.","In der Rennwoche entfällt die Kraftroutine, Mobility bleibt."]},{"id":"plan","titel":"Wie dieser Plan aufgebaut ist","intro":"Damit du weißt, warum was drinsteht - und was du im Notfall streichen darfst.","text":["Wochenumfang: 26, 34, 41, 47, 36 (Entlastung), 52, 56 (Peak), 38 (Taper), Rennwoche.","Longruns: 12, 14, 18, 22, 16, 26, 30, 16 km, dann der Marathon.","Priorität, wenn eine Woche eng wird: 1. Longrun am Sonntag. 2. Die Renntempo-Einheit am Donnerstag. 3. Der lockere Lauf am Dienstag. 4. Der kurze Lauf am Samstag. Von unten streichen, nie von oben.","Was in diesem Plan bewusst FEHLT: Intervalle, Bergsprints, Tempoläufe an der Schwelle. Bei einer 5-km-Zeit von 19:59 hast du davon nichts. Der einzige limitierende Faktor ist die Haltbarkeit deiner Beine über 42 km.","Ehrliche Einordnung zum Ziel 3:59: Deine Grundschnelligkeit sagt bei vollem Marathontraining eine Zeit um 3:12 voraus. Der Abschlag für einen kompakten 9-Wochen-Aufbau ohne Basis liegt erfahrungsgemäß bei 20 bis 25 Prozent - das landet genau bei 3:50 bis 4:00. 3:59 ist also erreichbar, aber es gibt keinen Puffer. Entschieden wird es durch zwei Dinge: ob der Fuß hält, und ob du in den ersten 10 km diszipliniert genug bist."]}],"version":"1.0.0"};
+
+/* ---------- Speicher: localStorage mit stillem Fallback ---------- */
+var store = (function(){
+  var mem = {}, ok = false;
+  try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); ok = true; } catch(e){ ok = false; }
+  return {
+    ok: ok,
+    get: function(k){ try { return ok ? localStorage.getItem(k) : (k in mem ? mem[k] : null); } catch(e){ return k in mem ? mem[k] : null; } },
+    set: function(k,v){ try { if(ok) localStorage.setItem(k,v); else mem[k]=v; } catch(e){ mem[k]=v; } }
+  };
+})();
+
+var KEY = "mm26.v1";
+var S = { log:{}, ui:{ tab:"heute", fs:2, th:"sys" } };
+try { var raw = store.get(KEY); if(raw){ var p = JSON.parse(raw); S.log = p.log || {}; S.ui = Object.assign(S.ui, p.ui || {}); } } catch(e){}
+function save(){ try { store.set(KEY, JSON.stringify(S)); } catch(e){} }
+
+var sel = null;           // manuell gewählter Eintrag (Plan-Tab)
+var $ = function(s){ return document.querySelector(s); };
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+function say(m){ $("#live").textContent = m; }
+var toastT = null;
+function toast(m){
+  say(m);
+  var old = document.querySelector(".toast"); if(old) old.remove();
+  var d = document.createElement("div"); d.className = "toast"; d.textContent = m;
+  document.body.appendChild(d);
+  clearTimeout(toastT); toastT = setTimeout(function(){ if(d.parentNode) d.remove(); }, 2600);
+}
+
+/* ---------- Datum ---------- */
+function todayISO(){
+  var d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function daysBetween(a,b){
+  return Math.round((Date.parse(b+"T00:00:00") - Date.parse(a+"T00:00:00")) / 86400000);
+}
+function daysLeft(){ return Math.max(0, daysBetween(todayISO(), DATA.goal.iso)); }
+function currentId(){
+  var t = todayISO();
+  if(DATA.entries[t]) return t;
+  if(t < DATA.order[0]) return DATA.order[0];
+  return DATA.order[DATA.order.length-1];
+}
+function activeId(){ return sel || currentId(); }
+
+/* ---------- Log-Helfer ---------- */
+function lg(id){ if(!S.log[id]) S.log[id] = {}; return S.log[id]; }
+function isDone(id){ return !!(S.log[id] && S.log[id].done); }
+function doneCount(){ var n=0; DATA.order.forEach(function(id){ if(isDone(id)) n++; }); return n; }
+function ampelClass(v){
+  if(v === "" || v === undefined || v === null) return "";
+  var n = parseInt(v,10);
+  if(isNaN(n)) return "";
+  if(n <= 2) return "a-ok"; if(n <= 4) return "a-warn"; return "a-bad";
+}
+function ampelText(v){
+  var c = ampelClass(v);
+  if(c === "a-ok") return "Grün — Training läuft normal weiter.";
+  if(c === "a-warn") return "Gelb — Umfang halbieren, kein Renntempo. Zwei gelbe Tage in Folge: Arzttermin.";
+  if(c === "a-bad") return "Rot — Laufpause und ärztlich abklären lassen. Siehe Referenz-Tab.";
+  return "";
+}
+function footSeries(n){
+  var out = [];
+  DATA.order.forEach(function(id){
+    var l = S.log[id]; if(!l) return;
+    var v = l.fussn !== undefined && l.fussn !== "" ? l.fussn : l.fussv;
+    if(v !== undefined && v !== "") out.push({ id:id, v:parseInt(v,10) });
+  });
+  return n ? out.slice(-n) : out;
+}
+function kmDone(){
+  var s = 0;
+  DATA.order.forEach(function(id){ var l=S.log[id]; if(l && l.km) s += parseFloat(l.km)||0; });
+  return s;
+}
+function kmPlanBis(iso){
+  var s = 0;
+  DATA.order.forEach(function(id){ if(id <= iso) s += DATA.entries[id].km || 0; });
+  return s;
+}
+
+/* ---------- Prompts ---------- */
+function logLines(e){
+  var l = S.log[e.id] || {}, out = [];
+  out.push("- Als erledigt markiert: " + (l.done ? "ja" : "nein"));
+  e.log.forEach(function(f){
+    var v = l[f.k];
+    if(v !== undefined && v !== "" && v !== null) out.push("- " + f.l + ": " + v);
+  });
+  return out.length > 1 ? out.join("\n") : out[0] + "\n- (sonst noch nichts eingetragen)";
+}
+function footLine(){
+  var s = footSeries(8);
+  if(!s.length) return "noch keine Werte erfasst";
+  return s.map(function(x){ return DATA.entries[x.id].datumKurz + " " + x.v; }).join(", ");
+}
+function entryPrompt(e){
+  var p = DATA.promptProfil + "\n\n";
+  p += "Es geht um diese Trainingseinheit (" + e.wtagLang + ", " + e.datum + " 2026, Trainingswoche " + e.wnr + "):\n";
+  p += "- Einheit: " + e.titel + (e.km ? " (" + e.km + " km)" : "") + "\n";
+  p += "- Vorgabe: " + e.pace + "\n";
+  e.details.forEach(function(d){ p += "- " + d + "\n"; });
+  p += "- Zweck laut Plan: " + e.warum + "\n";
+  p += "\nMein Log zu dieser Einheit:\n" + logLines(e) + "\n";
+  p += "\nMeine letzten Fußschmerz-Werte (0-10): " + footLine() + "\n";
+  p += "Stand heute: " + daysLeft() + " Tage bis zum Marathon, " + doneCount() + " von " + DATA.order.length + " Einheiten abgehakt.\n";
+  p += "\nAufgabe: Sag mir in höchstens fünf Sätzen, ob ich diese Einheit so machen soll, und passe sie bei Bedarf konkret an (Umfang, Tempo oder Verschiebung). Schließe mit genau einer klaren Handlungsempfehlung.";
+  return p;
+}
+function overviewPrompt(){
+  var p = DATA.promptProfil + "\n\n";
+  p += "Zwischenstand meines Trainings (" + new Date().toLocaleDateString("de-DE") + "):\n";
+  p += "- Noch " + daysLeft() + " Tage bis zum Marathon.\n";
+  p += "- " + doneCount() + " von " + DATA.order.length + " geplanten Einheiten abgehakt.\n";
+  p += "- Tatsächlich gelaufen laut Log: " + kmDone().toFixed(1) + " km. Bis heute geplant waren " + kmPlanBis(todayISO()).toFixed(1) + " km.\n";
+  var lr = 0; DATA.order.forEach(function(id){ var l=S.log[id]; if(l&&l.km) lr = Math.max(lr, parseFloat(l.km)||0); });
+  p += "- Längster tatsächlich gelaufener Lauf: " + (lr ? lr.toFixed(1) + " km" : "noch keiner geloggt") + ".\n";
+  p += "- Fußschmerz-Verlauf (0-10): " + footLine() + "\n";
+  p += "\nWochenbilanz (geplant vs. geloggt):\n";
+  DATA.weeks.forEach(function(w){
+    var a = 0, d = 0;
+    w.ids.forEach(function(id){ var l=S.log[id]; if(l&&l.km) a += parseFloat(l.km)||0; if(isDone(id)) d++; });
+    p += "- " + w.titel + ": geplant " + w.km + " km, geloggt " + a.toFixed(1) + " km, " + d + "/" + w.ids.length + " Einheiten\n";
+  });
+  var notes = [];
+  DATA.order.forEach(function(id){ var l=S.log[id]; if(l && l.notiz) notes.push(DATA.entries[id].datumKurz + " " + l.notiz); });
+  if(notes.length) p += "\nMeine Notizen:\n" + notes.slice(-12).map(function(n){ return "- " + n; }).join("\n") + "\n";
+  p += "\nAufgabe: Bewerte ehrlich, ob die Zielzeit 3:59 noch realistisch ist, und nenne mir die zwei wichtigsten Dinge, die ich in den verbleibenden Tagen anders machen sollte. Sei direkt, auch wenn die Antwort unangenehm ist. Maximal zehn Sätze.";
+  return p;
+}
+function exportText(){
+  var t = "MARATHON-LOG · München 11.10.2026 · Ziel 3:59\n";
+  t += "Stand " + new Date().toLocaleDateString("de-DE") + " · " + doneCount() + "/" + DATA.order.length + " Einheiten · " + kmDone().toFixed(1) + " km geloggt\n";
+  DATA.weeks.forEach(function(w){
+    var any = w.ids.some(function(id){ return S.log[id] && Object.keys(S.log[id]).length; });
+    if(!any) return;
+    t += "\n=== " + w.titel + " (geplant " + w.km + " km) ===\n";
+    w.ids.forEach(function(id){
+      var l = S.log[id]; if(!l || !Object.keys(l).length) return;
+      var e = DATA.entries[id];
+      t += (isDone(id) ? "[x] " : "[ ] ") + e.wtag + " " + e.datumKurz + " " + e.titel + "\n";
+      e.log.forEach(function(f){
+        var v = l[f.k]; if(v !== undefined && v !== "" && v !== null) t += "      " + f.l + ": " + v + "\n";
+      });
+    });
+  });
+  return t;
+}
+function claudeUrl(p){ return "https://claude.ai/new?q=" + encodeURIComponent(p); }
+function copy(text, msg){
+  function fb(){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.top="-1000px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); toast(msg); } catch(e){ toast("Kopieren nicht möglich"); }
+    ta.remove();
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast(msg); }, fb);
+  } else fb();
+}
+
+/* ---------- Rendern: Eintragskarte ---------- */
+function typChip(e){
+  if(e.typ === "rennen") return '<span class="chip bad">Renntag</span>';
+  if(e.typ === "ruhe") return '<span class="chip">Ruhetag</span>';
+  if(e.typ === "mobi") return '<span class="chip">Ohne Laufen</span>';
+  if(e.km >= 16) return '<span class="chip acc">Longrun</span>';
+  return '<span class="chip acc">Lauf</span>';
+}
+function cardHtml(e){
+  var l = S.log[e.id] || {};
+  var h = '<article class="card">';
+  h += '<div class="meta">' + esc(e.wtagLang) + ' · ' + esc(e.datum) + ' · Trainingswoche ' + e.wnr + '</div>';
+  h += '<h2>' + esc(e.titel) + '</h2>';
+  h += '<div class="chips">' + typChip(e);
+  if(e.km) h += '<span class="chip">' + e.km + ' km</span>';
+  h += '<span class="chip">' + esc(e.pace) + '</span></div>';
+  h += '<ul class="det">' + e.details.map(function(d){ return '<li>' + esc(d) + '</li>'; }).join("") + '</ul>';
+  h += '<div class="why"><b>Warum das hier steht</b>' + esc(e.warum) + '</div>';
+
+  h += '<div class="log"><h3>Mein Log</h3>';
+  h += '<label class="done' + (l.done ? " on" : "") + '"><input type="checkbox" data-k="done"' + (l.done ? " checked" : "") + '><span>' + (e.typ === "lauf" || e.typ === "rennen" ? "Einheit erledigt" : "Erledigt") + '</span></label>';
+  e.log.forEach(function(f){
+    var v = l[f.k] === undefined ? "" : l[f.k];
+    var id = "f_" + e.id + "_" + f.k;
+    h += '<div class="f"><label for="' + id + '">' + esc(f.l) + '</label>';
+    if(f.t === "sel"){
+      var cls = f.ampel ? ampelClass(v) : "";
+      h += '<select id="' + id + '" data-k="' + f.k + '"' + (f.ampel ? ' data-ampel="1"' : '') + ' class="' + cls + '">';
+      f.o.forEach(function(o){ h += '<option value="' + esc(o) + '"' + (String(v) === o ? " selected" : "") + '>' + (o === "" ? "–" : esc(o)) + '</option>'; });
+      h += '</select>';
+      if(f.ampel){ h += '<div class="ahint ' + cls + '" data-hint="' + f.k + '">' + esc(ampelText(v)) + '</div>'; }
+    } else if(f.t === "num"){
+      h += '<input id="' + id + '" type="number" inputmode="decimal" step="' + (f.step || "1") + '" data-k="' + f.k + '" value="' + esc(v) + '">';
+    } else {
+      h += '<textarea id="' + id + '" data-k="' + f.k + '" placeholder="Wie war es? Was war auffällig?">' + esc(v) + '</textarea>';
+    }
+    h += '</div>';
+  });
+  h += '</div>';
+
+  h += '<div class="actions">';
+  h += '<a class="btn p" href="' + esc(claudeUrl(entryPrompt(e))) + '" target="_blank" rel="noopener" data-claude="' + e.id + '">Mit Claude besprechen<small>Öffnet einen neuen Chat mit vollem Kontext</small></a>';
+  h += '<button class="btn" data-copy="' + e.id + '">Nur den Prompt kopieren</button>';
+  h += '</div></article>';
+  return h;
+}
+
+function renderHeute(){
+  var e = DATA.entries[activeId()];
+  var h = "";
+  if(sel && sel !== currentId()){
+    h += '<div class="banner"><span>Angezeigt: ' + esc(e.wtag + " " + e.datumKurz) + '</span><button id="backToday">Zu heute</button></div>';
+  }
+  h += cardHtml(e);
+  var i = DATA.order.indexOf(e.id);
+  h += '<div class="actions">';
+  if(i > 0) h += '<button class="btn" data-go="' + DATA.order[i-1] + '">← ' + esc(DATA.entries[DATA.order[i-1]].wtag + " " + DATA.entries[DATA.order[i-1]].titel) + '</button>';
+  if(i < DATA.order.length-1) h += '<button class="btn" data-go="' + DATA.order[i+1] + '">' + esc(DATA.entries[DATA.order[i+1]].wtag + " " + DATA.entries[DATA.order[i+1]].titel) + ' →</button>';
+  h += '</div>';
+  $("#p-heute").innerHTML = h;
+}
+
+function renderPlan(){
+  var cur = currentId(), curW = DATA.entries[cur].wnr, h = "";
+  DATA.weeks.forEach(function(w){
+    var d = 0; w.ids.forEach(function(id){ if(isDone(id)) d++; });
+    h += '<details class="wk"' + (w.nr === curW ? " open" : "") + '>';
+    h += '<summary><span>' + esc(w.titel) + '</span><span class="wkm">' + w.km + ' km' + (w.rennen ? ' + Marathon' : '') + ' · ' + d + '/' + w.ids.length + '</span></summary>';
+    h += '<div class="wkfok">' + esc(w.fokus) + '</div>';
+    w.ids.forEach(function(id){
+      var e = DATA.entries[id];
+      h += '<button class="row' + (id === cur ? " today" : "") + '" data-go="' + id + '">';
+      h += '<span class="rd">' + esc(e.wtag) + '<br>' + esc(e.datumKurz) + '</span>';
+      h += '<span class="rt">' + esc(e.titel) + '<em>' + esc(e.pace) + '</em></span>';
+      h += '<span class="rk">' + (e.km ? e.km + " km" : "") + '</span>';
+      h += '<span class="dot' + (isDone(id) ? " on" : "") + '" aria-hidden="true"></span>';
+      h += '<span class="sr">' + (isDone(id) ? "erledigt" : "offen") + '</span></button>';
+    });
+    h += '</details>';
+  });
+  $("#p-plan").innerHTML = h;
+}
+
+function renderRef(){
+  var h = "";
+  DATA.ref.forEach(function(s, i){
+    h += '<details class="wk"' + (i === 0 ? " open" : "") + '><summary><span>' + esc(s.titel) + '</span></summary>';
+    h += '<div style="padding:.85rem 1rem">';
+    if(s.intro) h += '<p class="note">' + esc(s.intro) + '</p>';
+    if(s.tabelle){
+      h += '<table class="tbl"><thead><tr>' + s.tabelle.kopf.map(function(k){ return '<th>' + esc(k) + '</th>'; }).join("") + '</tr></thead><tbody>';
+      s.tabelle.zeilen.forEach(function(r){ h += '<tr>' + r.map(function(c){ return '<td>' + esc(c) + '</td>'; }).join("") + '</tr>'; });
+      h += '</tbody></table>';
+    }
+    if(s.ampel){ s.ampel.forEach(function(a){ h += '<div class="amp ' + a.farbe + '"><b>' + esc(a.kopf) + '</b>' + esc(a.text) + '</div>'; }); }
+    if(s.liste){ s.liste.forEach(function(b){ h += '<p><strong>' + esc(b.kopf) + '</strong></p><ul class="det">' + b.punkte.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join("") + '</ul>'; }); }
+    if(s.text){ s.text.forEach(function(t){ h += '<p>' + esc(t) + '</p>'; }); }
+    h += '</div></details>';
+  });
+  $("#p-ref").innerHTML = h;
+}
+
+function renderFort(){
+  var done = doneCount(), tot = DATA.order.length;
+  var km = kmDone(), planBis = kmPlanBis(todayISO());
+  var lr = 0, rpes = [];
+  DATA.order.forEach(function(id){
+    var l = S.log[id]; if(!l) return;
+    if(l.km) lr = Math.max(lr, parseFloat(l.km) || 0);
+    if(l.rpe) rpes.push(parseInt(l.rpe,10));
+  });
+  var rpe = rpes.length ? (rpes.reduce(function(a,b){ return a+b; },0) / rpes.length).toFixed(1) : "–";
+  var h = '<div class="stats">';
+  h += '<div class="stat"><b>' + done + '/' + tot + '</b><span>Einheiten abgehakt</span></div>';
+  h += '<div class="stat"><b>' + km.toFixed(0) + ' km</b><span>geloggt · geplant bis heute ' + planBis.toFixed(0) + '</span></div>';
+  h += '<div class="stat"><b>' + (lr ? lr.toFixed(0) + " km" : "–") + '</b><span>längster Lauf bisher</span></div>';
+  h += '<div class="stat"><b>' + rpe + '</b><span>Ø Anstrengung (1–10)</span></div>';
+  h += '</div>';
+
+  h += '<div class="card"><h2 style="font-size:1.05rem">Fuß-Verlauf</h2>';
+  var fs = footSeries(20);
+  if(fs.length){
+    h += '<div class="ftrend" role="img" aria-label="Fußschmerz-Werte der letzten Einträge: ' + fs.map(function(x){ return x.v; }).join(", ") + '">';
+    fs.forEach(function(x){
+      var c = x.v <= 2 ? "" : (x.v <= 4 ? "warn" : "bad");
+      h += '<i class="' + c + '" style="height:' + Math.max(6, x.v * 10) + '%"></i>';
+    });
+    h += '</div><p class="note">Letzte ' + fs.length + ' Einträge, links alt, rechts neu. Aktuell: <strong>' + fs[fs.length-1].v + '/10</strong>. ' + esc(ampelText(String(fs[fs.length-1].v))) + '</p>';
+  } else {
+    h += '<p class="note">Noch keine Fuß-Werte eingetragen. Trag sie bei jeder Einheit ein — der Trend über zwei Wochen sagt mehr als jeder Einzelwert.</p>';
+  }
+  h += '</div>';
+
+  h += '<div class="card"><h2 style="font-size:1.05rem">Wochenumfang</h2><p class="note">Heller Balken: geplant. Grüner Balken: tatsächlich geloggt.</p>';
+  var max = Math.max.apply(null, DATA.weeks.map(function(w){ return w.km; }).concat([60]));
+  DATA.weeks.forEach(function(w){
+    var a = 0; w.ids.forEach(function(id){ var l=S.log[id]; if(l&&l.km) a += parseFloat(l.km)||0; });
+    h += '<div class="wbar"><span class="wl">Woche ' + w.nr + '</span><span class="wt">';
+    h += '<i class="wp" style="width:' + (w.km/max*100).toFixed(1) + '%"></i>';
+    h += '<i class="wa" style="width:' + Math.min(100, a/max*100).toFixed(1) + '%"></i>';
+    h += '</span><span class="wv">' + a.toFixed(0) + ' / ' + w.km + (w.rennen ? '+' : '') + '</span></div>';
+  });
+  h += '</div>';
+
+  h += '<div class="actions">';
+  h += '<a class="btn p" href="' + esc(claudeUrl(overviewPrompt())) + '" target="_blank" rel="noopener" data-claude="__ov">Gesamtauswertung mit Claude<small>Ehrliche Einschätzung, ob 3:59 noch trägt</small></a>';
+  h += '<button class="btn" data-copyov="1">Nur den Prompt kopieren</button>';
+  h += '<button class="btn" data-export="1">Log exportieren (teilen &amp; kopieren)</button>';
+  h += '</div>';
+  if(!store.ok) h += '<p class="note" style="color:var(--bad)"><strong>Achtung:</strong> Der Browser-Speicher ist hier blockiert. Deine Einträge gehen beim Schließen verloren. Öffne die App über das Homescreen-Icon.</p>';
+  $("#p-fort").innerHTML = h;
+}
+
+/* ---------- Kopf ---------- */
+function renderHead(){
+  var dl = daysLeft(), tot = DATA.order.length, done = doneCount();
+  $("#cd").textContent = dl === 0 ? "Heute!" : (dl === 1 ? "1 Tag" : dl + " Tage");
+  $("#cdsub").textContent = "bis " + DATA.goal.datumText + " · Ziel " + DATA.goal.zielzeit + " (" + DATA.goal.zielpace + ")";
+  var gone = DATA.order.length - DATA.order.filter(function(id){ return id > todayISO(); }).length;
+  var pct = Math.max(0, Math.min(100, gone / tot * 100));
+  $("#pbar").style.width = pct.toFixed(1) + "%";
+  $("#psub").textContent = done + " von " + tot + " Einheiten abgehakt · Trainingswoche " + DATA.entries[currentId()].wnr + " von 8";
+  $("#btnTh").textContent = S.ui.th === "sys" ? "Auto" : (S.ui.th === "hell" ? "Hell" : "Dunkel");
+  $("#btnTh").setAttribute("aria-label", "Farbschema: " + $("#btnTh").textContent + ". Zum Wechseln antippen.");
+  $("#btnFs").setAttribute("aria-label", "Schriftgröße Stufe " + S.ui.fs + " von 4. Zum Wechseln antippen.");
+  document.documentElement.setAttribute("data-th", S.ui.th);
+  document.documentElement.setAttribute("data-fs", String(S.ui.fs));
+}
+
+/* ---------- Tabs ---------- */
+var PANELS = { heute:"#p-heute", plan:"#p-plan", ref:"#p-ref", fort:"#p-fort" };
+function show(name, focusPanel){
+  S.ui.tab = name; save();
+  Object.keys(PANELS).forEach(function(k){
+    var panel = $(PANELS[k]), tab = $("#t-" + k);
+    panel.hidden = (k !== name);
+    tab.setAttribute("aria-selected", k === name ? "true" : "false");
+  });
+  if(name === "heute") renderHeute();
+  if(name === "plan") renderPlan();
+  if(name === "ref") renderRef();
+  if(name === "fort") renderFort();
+  renderHead();
+  if(focusPanel){ $(PANELS[name]).focus(); }
+  window.scrollTo(0,0);
+}
+
+/* ---------- Events ---------- */
+document.querySelectorAll('nav[role=tablist] button').forEach(function(b){
+  b.addEventListener("click", function(){ if(b.dataset.p === "heute") sel = null; show(b.dataset.p); });
+  b.addEventListener("keydown", function(ev){
+    var bs = Array.prototype.slice.call(document.querySelectorAll('nav[role=tablist] button'));
+    var i = bs.indexOf(b), n = null;
+    if(ev.key === "ArrowRight") n = bs[(i+1) % bs.length];
+    if(ev.key === "ArrowLeft") n = bs[(i-1+bs.length) % bs.length];
+    if(n){ ev.preventDefault(); n.focus(); if(n.dataset.p === "heute") sel = null; show(n.dataset.p); }
+  });
+});
+
+$("#btnFs").addEventListener("click", function(){
+  S.ui.fs = S.ui.fs >= 4 ? 1 : S.ui.fs + 1; save(); renderHead();
+  toast("Schriftgröße Stufe " + S.ui.fs + " von 4");
+});
+$("#btnTh").addEventListener("click", function(){
+  S.ui.th = S.ui.th === "sys" ? "hell" : (S.ui.th === "hell" ? "dunkel" : "sys"); save(); renderHead();
+  toast("Farbschema: " + $("#btnTh").textContent);
+});
+
+document.addEventListener("click", function(ev){
+  var t = ev.target.closest ? ev.target.closest("[data-go],[data-copy],[data-copyov],[data-export],#backToday,[data-claude]") : null;
+  if(!t) return;
+  if(t.id === "backToday"){ sel = null; show("heute"); return; }
+  if(t.dataset.go){ sel = t.dataset.go; show("heute"); return; }
+  if(t.dataset.copy){ copy(entryPrompt(DATA.entries[t.dataset.copy]), "Prompt kopiert — in Claude einfügen"); return; }
+  if(t.dataset.copyov){ copy(overviewPrompt(), "Prompt kopiert — in Claude einfügen"); return; }
+  if(t.dataset.claude){
+    // Prompt vor dem Öffnen frisch bauen (Log kann sich geändert haben)
+    var p = t.dataset.claude === "__ov" ? overviewPrompt() : entryPrompt(DATA.entries[t.dataset.claude]);
+    t.setAttribute("href", claudeUrl(p));
+    return;
+  }
+  if(t.dataset.export){
+    var txt = exportText();
+    if(navigator.share){
+      navigator.share({ title:"Marathon-Log", text:txt }).catch(function(){});
+    }
+    copy(txt, "Log kopiert" + (navigator.share ? " und Teilen geöffnet" : ""));
+    return;
+  }
+});
+
+function onField(ev){
+  var el = ev.target;
+  if(!el.dataset || !el.dataset.k) return;
+  var card = el.closest("article.card"); if(!card) return;
+  var id = activeId(), l = lg(id);
+  if(el.dataset.k === "done"){
+    l.done = el.checked;
+    el.closest(".done").classList.toggle("on", el.checked);
+    say(el.checked ? "Als erledigt markiert" : "Haken entfernt");
+  } else {
+    l[el.dataset.k] = el.value;
+    if(el.dataset.ampel){
+      var c = ampelClass(el.value);
+      el.className = c;
+      var hint = card.querySelector('[data-hint="' + el.dataset.k + '"]');
+      if(hint){ hint.className = "ahint " + c; hint.textContent = ampelText(el.value); }
+      if(c === "a-bad") say("Achtung: roter Bereich. Laufpause und ärztlich abklären.");
+    }
+  }
+  save();
+  renderHead();
+}
+document.addEventListener("change", onField);
+document.addEventListener("input", function(ev){
+  if(ev.target.tagName === "TEXTAREA" || ev.target.type === "number") onField(ev);
+});
+
+/* ---------- Start ---------- */
+renderHead();
+show(S.ui.tab && PANELS[S.ui.tab] ? S.ui.tab : "heute");
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("sw.js").catch(function(){});
+  });
+}
+</script>
+</body>
+</html>
